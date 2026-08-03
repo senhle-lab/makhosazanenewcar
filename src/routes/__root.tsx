@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Congratulations On Your New Volkswagen T - Cross R Line" },
+      { name: "description", content: "A cinematic celebration of a remarkable milestone. Experience the story, the journey, and the unforgattable moment of receiving a brand new VW T-Cross R-Line." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Congratulations On Your New Volkswagen T - Cross R Line" },
+      { property: "og:description", content: "A cinematic celebration of a remarkable milestone. Experience the story, the journey, and the unforgattable moment of receiving a brand new VW T-Cross R-Line." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Congratulations On Your New Volkswagen T - Cross R Line" },
+      { name: "twitter:description", content: "A cinematic celebration of a remarkable milestone. Experience the story, the journey, and the unforgattable moment of receiving a brand new VW T-Cross R-Line." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/4eZKF1SFMHgA9rNwurv57OlZqhq1/social-images/social-1785735649263-social-image.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/4eZKF1SFMHgA9rNwurv57OlZqhq1/social-images/social-1785735649263-social-image.webp" },
     ],
     links: [
       {
