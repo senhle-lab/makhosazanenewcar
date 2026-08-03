@@ -4,7 +4,14 @@ import { ChapterLabel, Reveal, ScrollFadeText } from "@/components/cinema/Scroll
 import { gallerySlots } from "@/lib/media";
 
 export function SceneGallery() {
-  const [hero, overlapA, overlapB, floatA, floatB, wide] = gallerySlots;
+  const [hero, overlapA, overlapB, floatA, floatB, wide] = gallerySlots as [
+    (typeof gallerySlots)[number],
+    (typeof gallerySlots)[number],
+    (typeof gallerySlots)[number],
+    (typeof gallerySlots)[number],
+    (typeof gallerySlots)[number],
+    (typeof gallerySlots)[number],
+  ];
 
   return (
     <section className="relative py-24 sm:py-32">

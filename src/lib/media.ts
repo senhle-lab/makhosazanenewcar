@@ -22,7 +22,7 @@ import roadAhead from "@/assets/road-ahead.jpg";
 export type MediaSlot = {
   src: string;
   alt: string;
-  caption?: string;
+  caption?: string | undefined;
 };
 
 export const HONOUREE = "Mrs. Makhosazana Hadebe";

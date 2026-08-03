@@ -16,7 +16,7 @@ export function KenBurnsImage({
 }: {
   src: string;
   alt: string;
-  caption?: string;
+  caption?: string | undefined;
   className?: string;
   zoom?: number;
   parallax?: number;
