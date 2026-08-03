@@ -132,6 +132,73 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* ── Cinematic layer: luxury film tokens ─────────────────────────── */
+
+@theme inline {
+  --color-obsidian: var(--obsidian);
+  --color-onyx: var(--onyx);
+  --color-gold: var(--gold);
+  --color-champagne: var(--champagne);
+  --color-ivory: var(--ivory);
+  --color-ash: var(--ash);
+  --font-display: var(--font-display-family);
+  --font-body: var(--font-body-family);
+}
+
+:root {
+  --obsidian: oklch(0.09 0.004 260);
+  --onyx: oklch(0.16 0.008 260);
+  --gold: oklch(0.78 0.115 85);
+  --champagne: oklch(0.9 0.055 88);
+  --ivory: oklch(0.97 0.006 90);
+  --ash: oklch(0.62 0.008 260);
+  --font-display-family: "Cormorant Garamond", Georgia, serif;
+  --font-body-family: "Karla", system-ui, sans-serif;
+  --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility glass-frame {
+  background: color-mix(in oklab, var(--ivory) 6%, transparent);
+  border: 1px solid color-mix(in oklab, var(--gold) 22%, transparent);
+  backdrop-filter: blur(18px) saturate(130%);
+  box-shadow:
+    0 40px 120px -40px color-mix(in oklab, var(--gold) 22%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--ivory) 10%, transparent);
+}
+
+@utility gold-rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--gold) 70%, transparent),
+    transparent
+  );
+}
+
+@utility text-gold-sheen {
+  background: linear-gradient(100deg, var(--champagne), var(--gold) 45%, var(--champagne));
+  background-clip: text;
+  color: transparent;
+}
+
+@utility film-grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@utility gpu {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -141,4 +208,16 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
+  .cinema {
+    background-color: var(--obsidian);
+    color: var(--ivory);
+    font-family: var(--font-body-family);
+    overflow-x: hidden;
+  }
+
+  .cinema ::selection {
+    background: color-mix(in oklab, var(--gold) 35%, transparent);
+  }
 }
+
