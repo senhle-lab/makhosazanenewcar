@@ -35,7 +35,7 @@ export function KenBurnsImage({
     [0, 1],
     reduced ? [0, 0] : [-parallax, parallax],
   );
-  const opacity = useTransform(scrollYProgress, [0, 0.22, 0.8, 1], [0, 1, 1, 0.35]);
+  const opacity = useTransform(scrollYProgress, [0, 0.18, 0.85, 1], [0.2, 1, 1, 0.6]);
 
   return (
     <motion.figure
@@ -52,7 +52,7 @@ export function KenBurnsImage({
         style={{ scale, y }}
         className="gpu h-full w-full object-cover"
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/10 to-obsidian/40" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-obsidian/40" />
       {caption ? (
         <figcaption className="absolute bottom-5 left-6 right-6 font-body text-[0.6rem] uppercase tracking-[0.36em] text-champagne/80">
           {caption}

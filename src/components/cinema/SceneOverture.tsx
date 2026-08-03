@@ -15,7 +15,7 @@ export function SceneOverture() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
-  const bloomOpacity = useTransform(scrollYProgress, [0, 0.15, 0.8, 1], [0, 0.55, 0.7, 0.2]);
+  const bloomOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 0.55, 0.7, 0]);
   const bloomScale = useTransform(scrollYProgress, [0, 1], [0.6, 1.6]);
 
   return (
