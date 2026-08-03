@@ -7,7 +7,10 @@ export function SoundToggle() {
 
   useEffect(() => {
     setOn(isSoundEnabled());
-    return subscribeSound(setOn);
+    const unsubscribe = subscribeSound(setOn);
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (
