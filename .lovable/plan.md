@@ -1,83 +1,35 @@
-## The Experience
+# Bring the real photos into the film
 
-A single-page, scroll-driven cinematic film for **Mrs. Makhosazana Hadebe** and her new Volkswagen T-Cross R-Line. Black canvas, gold accents, white serif typography, glass panels, generous luxury spacing. Every section is a "scene" that reveals as you scroll.
+The film already exists at `/` with seven scrolling scenes built on AI placeholder imagery. You've now uploaded five real photographs, so this pass replaces the fabricated shots with the genuine ones and finishes the closing line.
 
-Built at `/` (the home route), so it opens immediately.
+## Your photos and where each one goes
 
-## Scene Structure
+| Photo | Placed in |
+| --- | --- |
+| Signing the papers (grey blazer, red top) | Chapter Four — Her: the opening beat, "The signature" |
+| Sitting behind the wheel, hands together | Chapter Four — Her: the emotional centre, "Her moment" |
+| Family laughing together in the showroom | Chapter Two — Together: becomes the real hero image of the celebration scene |
+| Red T-Cross R-Line front three-quarter (grille, R badge, headlight, wheel) | Grand Reveal hero, plus the Gallery hero |
+| R-Line interior (seats, steering wheel, cockpit) | Chapter One — Fragments and the Gallery |
 
-```
-1. OVERTURE      black → faint gold light bloom
-                 one line at a time, fading in/out:
-                 "Every dream begins with a single step."
-                 "Every sacrifice becomes a story."
-                 "Every journey deserves to be celebrated."
-                 "The road to success isn't measured in kilometres…"
-                 "…it's measured in determination."
-                 sound toggle appears here
+The AI-generated close-ups stay only where no real equivalent exists (rear lights, night cockpit, open road finale), so the film never shows a car that isn't hers.
 
-2. SUSPENSE      cinematic close-ups, never the whole car:
-                 VW logo · R-Line badge · LED headlight · alloy wheel ·
-                 steering wheel · dashboard · rear light signature
-                 slow Ken Burns zoom + parallax on each
+## Changes
 
-3. FAMILY        celebration scene — video slot (16:9 glass frame)
-                 overlaid captions rising one by one:
-                 "Because success is even more beautiful when shared."
-                 "A family celebrating a dream fulfilled."
-                 "Behind every milestone is love, support and
-                  unforgettable memories."
+1. Upload the five photos to CDN storage and point the media manifest at them — the binaries stay out of the codebase.
+2. Rework the media manifest so her portraits drive the "Her" chapter, the family shot drives "Together", and the real red T-Cross drives the Reveal and Gallery.
+3. Chapter Two currently shows a reserved glass frame because there's no video yet. It will instead show the real family photograph, full-bleed with the three captions over it, and keep the video slot ready for when you upload the celebration clip.
+4. Crop framing per slot so faces are never cut awkwardly — the portraits are tall, so they get portrait aspect frames; the car shots are wide and get cinematic frames.
+5. Add the final line at the very end of the Finale, after "The journey continues…": *"Some journeys change your destination. Others change your life."* followed by *"— Congratulations on your new Volkswagen T-Cross R-Line."*
+6. Update `MEDIA.md` so the remaining empty slots (celebration video, audio tracks) are still clearly documented.
 
-4. GALLERY       alternating luxury layouts — full-bleed hero,
-                 overlapping magazine pair, floating glass cards,
-                 offset asymmetric spread. Each fades in with slow
-                 zoom + differential parallax.
+## Technical notes
 
-5. HER           details first (hands, walk, door opening, standing
-                 beside the car), then the full reveal.
-                 Word cards: Strength. Faith. Determination. Achievement.
-                 → "This moment belongs to her."
+- Photos are uploaded with `lovable-assets` and referenced via `.asset.json` pointers imported in `src/lib/media.ts`; no component logic changes beyond framing classes.
+- Existing scroll motion (Ken Burns zoom, parallax, light sweep) is reused as-is — transform/opacity only, `prefers-reduced-motion` respected.
+- Verified in the browser at mobile and desktop widths after the swap.
 
-6. GRAND REVEAL  full car, golden-hour grade, light sweep across frame
-                 "Introducing…"  →  "Mrs. Makhosazana Hadebe"
-                 →  "A journey built on faith, perseverance and success."
-                 →  "The Volkswagen T-Cross R-Line."
+## Still needed from you
 
-7. BLESSING      "Congratulations."
-                 "This isn't simply a new car."
-                 "It is the reward for years of perseverance."
-                 "May every journey bring joy."
-                 "May every destination bring new opportunities."
-                 "May God protect every road ahead."
-                 → "The journey continues…"  → fade to black
-```
-
-## Visuals
-
-I'll generate a full set of cinematic AI images as stand-ins — black-background automotive detail shots (badge, headlight, wheel, interior, side profile, rear lights, golden-hour hero) sized 4K-ratio for crisp display. Each image lives in a named slot so you can drop your real photos and video in later by replacing one file per slot, with a single manifest file listing every slot and its purpose.
-
-The family celebration video and the "her" portrait shots get elegant placeholder frames rather than AI-generated people — those moments should only ever be the real thing.
-
-## Audio
-
-A sound toggle (gold, unobtrusive, fixed corner) that starts muted — browsers block autoplay audio, and unmuted-by-default would break the opening. Once enabled, a looping score bed plays and fades in/out across scene boundaries, plus slots for wind ambience, whoosh, ignition, and door-close cues triggered at their matching scene. All audio paths sit in one config file so your uploaded music drops straight in. Until then the site plays silent with the toggle in place.
-
-## Motion & Performance
-
-- Scroll animation via Framer Motion `useScroll` / `useTransform`, transform + opacity only (GPU-composited) — no layout-triggering properties
-- `IntersectionObserver`-gated reveals so offscreen scenes cost nothing
-- Responsive from 390px up: type scales with `clamp()`, gallery layouts collapse to single column, parallax intensity reduces on mobile
-- `prefers-reduced-motion` respected — reveals become simple fades
-
-## Technical
-
-- Route: rewrite `src/routes/index.tsx` with proper cinematic head metadata (title, description, og/twitter tags)
-- Design tokens added to `src/styles.css`: obsidian blacks, champagne/gold accents, glass surfaces, cinematic easing curves — no hardcoded colours in components
-- Typography: Cormorant Garamond (display serif) + Karla (body), loaded via `<link>` in `__root.tsx`
-- One component per scene under `src/components/scenes/`, plus shared `CinematicText`, `KenBurnsImage`, `GlassFrame`, `SoundToggle`
-- Framer Motion added as the only new dependency
-- No backend needed — fully static, so it loads instantly
-
-## Handoff for your real media
-
-A short `MEDIA.md` listing each image slot, video slot, and audio slot with its filename and intended shot, so replacing placeholders is drag-and-drop.
+- The **celebration video** (`public/media/celebration.mp4`) for the family scene's motion moment.
+- The **audio files** — score, ambience, whoosh, ignition, door close — which stay silent until you drop them in.
