@@ -12,8 +12,8 @@ export function SceneHer() {
       <ScrollFadeText height="60vh">Before the car, there was the woman.</ScrollFadeText>
 
       {/* details first — hands, the door, standing beside it */}
-      <div className="mx-auto max-w-5xl px-5">
-        <div className="grid gap-5 sm:grid-cols-3">
+      <div className="mx-auto max-w-4xl px-5">
+        <div className="grid gap-5 sm:grid-cols-2">
           {herSlots.map((slot, i) => (
             <Reveal key={`${slot.caption}-${i}`} delay={i * 0.16}>
               <KenBurnsImage
@@ -22,12 +22,13 @@ export function SceneHer() {
                 caption={slot.caption}
                 zoom={1.16}
                 parallax={i === 1 ? 60 : 28}
-                className={`aspect-[3/4] rounded-2xl ${i === 1 ? "sm:-translate-y-10" : ""}`}
+                className={`aspect-[3/4] rounded-2xl ${i === 1 ? "sm:translate-y-12" : ""}`}
               />
             </Reveal>
           ))}
         </div>
       </div>
+
 
       <div className="mx-auto mt-28 max-w-4xl px-6 sm:mt-40">
         <div className="space-y-10 text-center">
