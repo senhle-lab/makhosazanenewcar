@@ -1,32 +1,37 @@
 # Media slots
 
-Everything below is a placeholder you can replace. Keep the filename identical and the
-site picks it up automatically — no code changes needed.
+## Real photographs (already in the film)
 
-## Images — `src/assets/`
+Uploaded and served from CDN via `.asset.json` pointers in `src/assets/`:
 
-| File | Where it appears | Intended shot |
-| --- | --- | --- |
-| `detail-logo.jpg` | Chapter One | Macro of the VW roundel on the grille |
-| `detail-badge.jpg` | Chapter One | R-Line badge close-up |
-| `detail-headlight.jpg` | Chapter One / Gallery | LED headlight signature |
-| `detail-wheel.jpg` | Chapter One / Gallery | Alloy wheel, low angle |
-| `detail-steering.jpg` | Chapter One | Steering wheel, ambient interior light |
-| `detail-dashboard.jpg` | Chapter One / Gallery | Digital cockpit at night |
-| `detail-rear.jpg` | Chapter One | Rear tail-light signature |
-| `detail-profile.jpg` | Gallery / Her | Side profile silhouette |
-| `detail-door.jpg` | Gallery / Her | Driver door opening |
-| `detail-keys.jpg` | Gallery / Her | Keys in her hand |
-| `hero-reveal.jpg` | Grand Reveal | Full car, golden hour, three-quarter front |
-| `road-ahead.jpg` | Finale | Open road into a golden horizon |
+| Pointer | Where it appears |
+| --- | --- |
+| `her-signing.jpg.asset.json` | Chapter Four — Her ("The signature") |
+| `her-driving.jpg.asset.json` | Chapter Four — Her ("Her moment") + Gallery |
+| `family-celebration.jpg.asset.json` | Chapter Two — Together + Gallery |
+| `tcross-front.jpg.asset.json` | Chapter One, Gallery hero, Grand Reveal |
+| `tcross-interior.jpg.asset.json` | Chapter One, Gallery |
 
-Her portrait moments (hands, smile, walking, standing beside the car) currently reuse the
-detail shots. Replace the three entries in `herSlots` inside `src/lib/media.ts` with her
-real photographs — that's the emotional core of the film.
+To swap one, upload a new file and replace the pointer:
 
-## Video — `public/media/`
+```bash
+lovable-assets create --file /path/to/new.jpg --filename her-driving.jpg > src/assets/her-driving.jpg.asset.json
+```
 
-1. Save the celebration clip as `public/media/celebration.mp4`.
+## Remaining AI placeholders — `src/assets/`
+
+| File | Where it appears |
+| --- | --- |
+| `detail-badge.jpg` | Chapter One — R-Line badge |
+| `detail-headlight.jpg` | Chapter One / Gallery |
+| `detail-wheel.jpg` | Chapter One / Gallery |
+| `detail-dashboard.jpg` | Chapter One — cockpit at night |
+| `detail-rear.jpg` | Chapter One — tail lights |
+| `road-ahead.jpg` | Finale — open road |
+
+## Video — the celebration clip
+
+1. Save the clip as `public/media/celebration.mp4`.
 2. In `src/lib/media.ts`, set:
 
 ```ts
@@ -36,7 +41,8 @@ export const celebrationVideo = {
 };
 ```
 
-Until then, Chapter Two shows an elegant reserved glass frame.
+Until then, Chapter Two shows the real family photograph in a glass frame. Once the video
+is set, it replaces that frame automatically.
 
 ## Audio — `public/media/audio/`
 
@@ -50,6 +56,5 @@ Fill in the paths in `src/lib/audio.ts`:
 | `ignition` | `ignition.mp3` | Fires at the Grand Reveal |
 | `doorClose` | `door-close.mp3` | Fires at the Finale |
 
-Audio only starts after the visitor presses **Sound on** — browsers block autoplay, and an
-unexpected blast of music would break the opening. Everything stays silent, with no failed
-requests, until you set a path.
+Audio only starts after the visitor presses **Sound on** — browsers block autoplay. Everything
+stays silent, with no failed requests, until you set a path.

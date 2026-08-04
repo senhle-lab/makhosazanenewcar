@@ -1,6 +1,7 @@
 import { GlassFrame } from "@/components/cinema/GlassFrame";
+import { KenBurnsImage } from "@/components/cinema/KenBurnsImage";
 import { ChapterLabel, Reveal, ScrollFadeText } from "@/components/cinema/ScrollFade";
-import { celebrationVideo } from "@/lib/media";
+import { celebrationVideo, familySlot } from "@/lib/media";
 
 const CAPTIONS = [
   "Because success is even more beautiful when shared.",
@@ -17,8 +18,8 @@ export function SceneFamily() {
 
       <div className="mx-auto max-w-5xl px-5">
         <Reveal>
-          <GlassFrame className="aspect-video">
-            {celebrationVideo.src ? (
+          {celebrationVideo.src ? (
+            <GlassFrame className="aspect-video">
               <video
                 className="h-full w-full object-cover"
                 src={celebrationVideo.src}
@@ -27,20 +28,22 @@ export function SceneFamily() {
                 playsInline
                 preload="metadata"
               />
-            ) : (
-              <div className="flex h-full w-full flex-col items-center justify-center gap-4 bg-onyx/40 px-8 text-center">
-                <span className="gold-rule h-px w-20" />
-                <p className="font-display text-[clamp(1.1rem,3vw,1.8rem)] font-light italic text-champagne">
-                  Reserved for the celebration
-                </p>
-                <p className="max-w-sm font-body text-xs leading-relaxed text-ash">
-                  Her sisters, the laughter, the moment it all became real.
-                </p>
-              </div>
-            )}
-            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-gold/15" />
-          </GlassFrame>
+              <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-gold/15" />
+            </GlassFrame>
+          ) : (
+            <GlassFrame>
+              <KenBurnsImage
+                src={familySlot.src}
+                alt={familySlot.alt}
+                zoom={1.16}
+                parallax={40}
+                className="aspect-[4/5] rounded-3xl sm:aspect-[16/10]"
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-gold/15" />
+            </GlassFrame>
+          )}
         </Reveal>
+
 
         <div className="mt-16 space-y-14 sm:mt-24">
           {CAPTIONS.map((caption, i) => (
