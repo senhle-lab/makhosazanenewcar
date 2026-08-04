@@ -19,6 +19,20 @@ import detailKeys from "@/assets/detail-keys.jpg";
 import heroReveal from "@/assets/hero-reveal.jpg";
 import roadAhead from "@/assets/road-ahead.jpg";
 
+// Real photographs (CDN-hosted)
+import herSigningAsset from "@/assets/her-signing.jpg.asset.json";
+import herDrivingAsset from "@/assets/her-driving.jpg.asset.json";
+import familyAsset from "@/assets/family-celebration.jpg.asset.json";
+import tcrossFrontAsset from "@/assets/tcross-front.jpg.asset.json";
+import tcrossInteriorAsset from "@/assets/tcross-interior.jpg.asset.json";
+
+const herSigning = herSigningAsset.url;
+const herDriving = herDrivingAsset.url;
+const familyCelebration = familyAsset.url;
+const tcrossFront = tcrossFrontAsset.url;
+const tcrossInterior = tcrossInteriorAsset.url;
+
+
 export type MediaSlot = {
   src: string;
   alt: string;
