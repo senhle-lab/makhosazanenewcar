@@ -70,11 +70,22 @@ export function SceneBlessing() {
       </div>
 
       <footer className="relative py-20 text-center">
-        <span className="gold-rule mx-auto mb-8 block h-px w-16" />
+        <Reveal>
+          <p className="mx-auto max-w-3xl px-6 font-display text-[clamp(1.4rem,4.6vw,2.8rem)] font-light italic leading-[1.35] text-ivory">
+            Some journeys change your destination. Others change your life.
+          </p>
+        </Reveal>
+        <Reveal delay={0.25}>
+          <p className="mx-auto mt-8 max-w-xl px-6 font-body text-[0.68rem] uppercase tracking-[0.32em] text-gold-sheen">
+            — Congratulations on your new {VEHICLE}
+          </p>
+        </Reveal>
+        <span className="gold-rule mx-auto my-12 block h-px w-16" />
         <p className="font-body text-[0.55rem] uppercase tracking-[0.4em] text-ash">
           Made with love, for family
         </p>
       </footer>
+
     </motion.section>
   );
 }
