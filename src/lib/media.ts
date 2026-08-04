@@ -6,18 +6,13 @@
  * See MEDIA.md for the full slot list.
  */
 
-import detailLogo from "@/assets/detail-logo.jpg";
 import detailBadge from "@/assets/detail-badge.jpg";
 import detailHeadlight from "@/assets/detail-headlight.jpg";
 import detailWheel from "@/assets/detail-wheel.jpg";
-import detailSteering from "@/assets/detail-steering.jpg";
 import detailDashboard from "@/assets/detail-dashboard.jpg";
 import detailRear from "@/assets/detail-rear.jpg";
-import detailProfile from "@/assets/detail-profile.jpg";
-import detailDoor from "@/assets/detail-door.jpg";
-import detailKeys from "@/assets/detail-keys.jpg";
-import heroReveal from "@/assets/hero-reveal.jpg";
 import roadAhead from "@/assets/road-ahead.jpg";
+
 
 // Real photographs (CDN-hosted)
 import herSigningAsset from "@/assets/her-signing.jpg.asset.json";
