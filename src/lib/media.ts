@@ -43,42 +43,48 @@ export const HONOUREE = "Mrs. Makhosazana Hadebe";
 export const VEHICLE = "Volkswagen T-Cross R-Line";
 
 export const suspenseSlots: MediaSlot[] = [
-  { src: detailLogo, alt: "Volkswagen emblem catching the light", caption: "The mark" },
-  { src: detailBadge, alt: "R-Line badge on glossy black bodywork", caption: "R-Line" },
+  { src: tcrossFront, alt: "Volkswagen emblem and R badge on the red T-Cross grille", caption: "The mark" },
+  { src: detailBadge, alt: "R-Line badge on glossy bodywork", caption: "R-Line" },
   { src: detailHeadlight, alt: "LED headlight signature glowing in the dark", caption: "First light" },
   { src: detailWheel, alt: "Alloy wheel lit from the side", caption: "Grounded" },
 ];
 
 export const interiorSlots: MediaSlot[] = [
-  { src: detailSteering, alt: "Steering wheel in warm ambient interior light", caption: "In her hands" },
+  { src: tcrossInterior, alt: "R-Line seats and steering wheel inside the T-Cross", caption: "In her hands" },
   { src: detailDashboard, alt: "Illuminated digital cockpit at night", caption: "Every detail" },
   { src: detailRear, alt: "Rear light signature glowing red", caption: "The road behind" },
 ];
 
 export const gallerySlots: MediaSlot[] = [
-  { src: detailProfile, alt: "Side profile of the vehicle in shadow", caption: "Silhouette" },
-  { src: detailDoor, alt: "Driver door opening with warm light spilling out", caption: "The invitation" },
-  { src: detailKeys, alt: "Car key resting on an open palm", caption: "Earned" },
-  { src: detailHeadlight, alt: "Headlight detail", caption: "Presence" },
+  { src: tcrossFront, alt: `The red ${VEHICLE}, front three-quarter`, caption: "Presence" },
+  { src: tcrossInterior, alt: "R-Line interior, seats and cockpit", caption: "Craft" },
+  { src: herDriving, alt: "Behind the wheel of her new T-Cross", caption: "Her seat" },
+  { src: detailHeadlight, alt: "Headlight detail", caption: "First light" },
   { src: detailWheel, alt: "Wheel detail", caption: "Stance" },
-  { src: detailDashboard, alt: "Cockpit detail", caption: "Craft" },
+  { src: familyCelebration, alt: "Family laughing together in the showroom", caption: "Shared" },
 ];
 
 export const herSlots: MediaSlot[] = [
-  { src: detailKeys, alt: "Keys in hand", caption: "Her hands" },
-  { src: detailDoor, alt: "Opening the driver door", caption: "Her moment" },
-  { src: detailProfile, alt: "Standing beside the vehicle", caption: "Her pride" },
+  { src: herSigning, alt: "Signing the paperwork for her new vehicle", caption: "The signature" },
+  { src: herDriving, alt: "Sitting behind the wheel of her new T-Cross", caption: "Her moment" },
 ];
 
+export const familySlot: MediaSlot = {
+  src: familyCelebration,
+  alt: "Her family laughing together beside the new vehicle in the showroom",
+  caption: "Together",
+};
+
 export const revealSlot: MediaSlot = {
-  src: heroReveal,
-  alt: `The ${VEHICLE} at golden hour`,
+  src: tcrossFront,
+  alt: `The ${VEHICLE} in Kings Red`,
 };
 
 export const roadSlot: MediaSlot = {
   src: roadAhead,
   alt: "An open road stretching into a golden horizon",
 };
+
 
 /**
  * Family celebration video slot.
