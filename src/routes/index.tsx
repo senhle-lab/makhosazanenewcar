@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SoundToggle } from "@/components/cinema/SoundToggle";
+import { PerformanceProvider } from "@/components/cinema/PerformanceProvider";
+import { ShareMoment } from "@/components/cinema/ShareMoment";
 import { SceneOverture } from "@/components/cinema/SceneOverture";
 import { SceneSuspense } from "@/components/cinema/SceneSuspense";
 import { SceneFamily } from "@/components/cinema/SceneFamily";
@@ -28,15 +30,18 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="cinema relative">
-      <SoundToggle />
-      <SceneOverture />
-      <SceneSuspense />
-      <SceneFamily />
-      <SceneGallery />
-      <SceneHer />
-      <SceneReveal />
-      <SceneBlessing />
-    </main>
+    <PerformanceProvider>
+      <main className="cinema relative">
+        <SoundToggle />
+        <ShareMoment />
+        <SceneOverture />
+        <SceneSuspense />
+        <SceneFamily />
+        <SceneGallery />
+        <SceneHer />
+        <SceneReveal />
+        <SceneBlessing />
+      </main>
+    </PerformanceProvider>
   );
 }

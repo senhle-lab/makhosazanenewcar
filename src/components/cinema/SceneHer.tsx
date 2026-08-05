@@ -6,7 +6,7 @@ const VIRTUES = ["Strength.", "Faith.", "Determination.", "Achievement."];
 
 export function SceneHer() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section data-chapter="her" className="relative py-24 sm:py-32">
       <ChapterLabel>Chapter Four — Her</ChapterLabel>
 
       <ScrollFadeText height="60vh">Before the car, there was the woman.</ScrollFadeText>

@@ -11,7 +11,7 @@ const CAPTIONS = [
 
 export function SceneFamily() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section data-chapter="together" className="relative py-24 sm:py-32">
       <ChapterLabel>Chapter Two — Together</ChapterLabel>
 
       <ScrollFadeText height="60vh">And then the laughter began.</ScrollFadeText>

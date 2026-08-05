@@ -17,6 +17,7 @@ export function SceneReveal() {
     <motion.section
       ref={ref}
       className="relative"
+      data-chapter="reveal"
       onViewportEnter={() => playCue("ignition")}
       viewport={{ once: true, amount: 0.3 }}
     >
