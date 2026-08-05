@@ -1,5 +1,6 @@
 import { useRef, type ReactNode } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useQuality } from "@/components/cinema/PerformanceProvider";
 
 /**
  * A line of cinematic text that fades in as it enters the frame and fades
@@ -16,15 +17,17 @@ export function ScrollFadeText({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+  const { motion: budget } = useQuality();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.32, 0.6, 0.9], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.4, 1], reduced ? [0, 0, 0] : [40, 0, -40]);
+  const shift = reduced || budget.parallax === 0 ? 0 : 40 * budget.parallax;
+  const y = useTransform(scrollYProgress, [0, 0.4, 1], [shift, 0, -shift]);
   const blur = useTransform(scrollYProgress, [0, 0.32, 0.6, 0.9], [8, 0, 0, 8]);
-  const filter = useTransform(blur, (v) => (reduced ? "none" : `blur(${v}px)`));
+  const filter = useTransform(blur, (v) => (reduced || !budget.blur ? "none" : `blur(${v}px)`));
 
   return (
     <div ref={ref} className="flex items-center justify-center px-6" style={{ minHeight: height }}>
