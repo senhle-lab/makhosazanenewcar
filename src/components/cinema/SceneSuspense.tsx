@@ -8,6 +8,7 @@ export function SceneSuspense() {
   return (
     <motion.section
       className="relative py-24 sm:py-32"
+      data-chapter="fragments"
       onViewportEnter={() => playCue("whoosh")}
       viewport={{ once: true, amount: 0.2 }}
     >

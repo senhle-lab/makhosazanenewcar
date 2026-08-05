@@ -21,6 +21,7 @@ export function SceneBlessing() {
     <motion.section
       ref={ref}
       className="relative"
+      data-chapter="finale"
       onViewportEnter={() => playCue("doorClose")}
       viewport={{ once: true, amount: 0.2 }}
     >

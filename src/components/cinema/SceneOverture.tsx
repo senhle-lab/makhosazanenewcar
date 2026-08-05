@@ -19,7 +19,7 @@ export function SceneOverture() {
   const bloomScale = useTransform(scrollYProgress, [0, 1], [0.6, 1.6]);
 
   return (
-    <section ref={ref} className="relative">
+    <section ref={ref} data-chapter="overture" className="relative">
       {/* faint light that slowly appears out of the black */}
       <motion.div
         aria-hidden="true"

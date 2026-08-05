@@ -14,7 +14,7 @@ export function SceneGallery() {
   ];
 
   return (
-    <section className="relative py-24 sm:py-32">
+    <section data-chapter="gallery" className="relative py-24 sm:py-32">
       <ChapterLabel>Chapter Three — The Gallery</ChapterLabel>
 
       {/* full-bleed hero */}
