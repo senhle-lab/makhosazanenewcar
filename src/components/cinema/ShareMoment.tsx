@@ -20,7 +20,7 @@ export function ShareMoment() {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          const id = (entry.target as HTMLElement).dataset.chapter as ChapterId | undefined;
+          const id = (entry.target as HTMLElement).dataset["chapter"] as ChapterId | undefined;
           if (id) ratios.set(id, entry.intersectionRatio);
         }
         let best: ChapterId | null = null;
