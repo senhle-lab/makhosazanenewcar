@@ -28,15 +28,18 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="cinema relative">
-      <SoundToggle />
-      <SceneOverture />
-      <SceneSuspense />
-      <SceneFamily />
-      <SceneGallery />
-      <SceneHer />
-      <SceneReveal />
-      <SceneBlessing />
-    </main>
+    <PerformanceProvider>
+      <main className="cinema relative">
+        <SoundToggle />
+        <ShareMoment />
+        <SceneOverture />
+        <SceneSuspense />
+        <SceneFamily />
+        <SceneGallery />
+        <SceneHer />
+        <SceneReveal />
+        <SceneBlessing />
+      </main>
+    </PerformanceProvider>
   );
 }
