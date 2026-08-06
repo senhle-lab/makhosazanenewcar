@@ -1,33 +1,39 @@
 # Media slots
 
-## Real photographs (already in the film)
+Every frame in the film is a real photograph, colour-graded to the black-and-gold
+look and pre-cropped to the aspect ratio of the slot it fills. All of them are
+CDN-hosted via `.asset.json` pointers in `src/assets/`, imported by `src/lib/media.ts`.
 
-Uploaded and served from CDN via `.asset.json` pointers in `src/assets/`:
+## Your photographs
 
 | Pointer | Where it appears |
 | --- | --- |
 | `her-signing.jpg.asset.json` | Chapter Four — Her ("The signature") |
 | `her-driving.jpg.asset.json` | Chapter Four — Her ("Her moment") + Gallery |
 | `family-celebration.jpg.asset.json` | Chapter Two — Together + Gallery |
-| `tcross-front.jpg.asset.json` | Chapter One, Gallery hero, Grand Reveal |
-| `tcross-interior.jpg.asset.json` | Chapter One, Gallery |
+| `tcross-front.jpg.asset.json` | Chapter One ("The mark"), Gallery hero, Chapter Five closing hero |
+| `tcross-interior.jpg.asset.json` | Chapter One ("In her hands"), Gallery |
+
+## Graded detail frames
+
+| Pointer | Where it appears |
+| --- | --- |
+| `overture-front.jpg.asset.json` | Overture — "The Road to Her Dream" backdrop |
+| `mark-portrait.jpg.asset.json` | Chapter One — "R-Line" |
+| `first-light-portrait.jpg.asset.json` | Chapter One — "First light" |
+| `first-light-wide.jpg.asset.json` | Gallery — "First light" glass card |
+| `stance-portrait.jpg.asset.json` | Chapter One — "Grounded" |
+| `stance-wide.jpg.asset.json` | Gallery — "Stance" glass card |
+| `every-detail.jpg.asset.json` | Chapter One — "Every detail" |
+| `road-behind.jpg.asset.json` | Chapter One — "The road behind" |
+| `reveal-rear.jpg.asset.json` | Chapter Five — The Reveal, opening frame |
+| `road-ahead.jpg.asset.json` | Finale — the road ahead |
 
 To swap one, upload a new file and replace the pointer:
 
 ```bash
 lovable-assets create --file /path/to/new.jpg --filename her-driving.jpg > src/assets/her-driving.jpg.asset.json
 ```
-
-## Remaining AI placeholders — `src/assets/`
-
-| File | Where it appears |
-| --- | --- |
-| `detail-badge.jpg` | Chapter One — R-Line badge |
-| `detail-headlight.jpg` | Chapter One / Gallery |
-| `detail-wheel.jpg` | Chapter One / Gallery |
-| `detail-dashboard.jpg` | Chapter One — cockpit at night |
-| `detail-rear.jpg` | Chapter One — tail lights |
-| `road-ahead.jpg` | Finale — open road |
 
 ## Video — the celebration clip
 
