@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ChapterLabel, Reveal } from "@/components/cinema/ScrollFade";
-import { HONOUREE, revealSlot, VEHICLE } from "@/lib/media";
+import { HONOUREE, revealHeroSlot, revealSlot, VEHICLE } from "@/lib/media";
 import { playCue } from "@/lib/audio";
 
 export function SceneReveal() {
@@ -69,6 +69,26 @@ export function SceneReveal() {
           </Reveal>
         </div>
       </div>
+
+      <div className="film-grain relative h-[90vh] overflow-hidden">
+        <img
+          src={revealHeroSlot.src}
+          alt={revealHeroSlot.alt}
+          width={1920}
+          height={1088}
+          loading="lazy"
+          className="gpu absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-obsidian/60" />
+        <div className="relative flex h-full items-end justify-center pb-16 px-6">
+          <Reveal>
+            <p className="text-center font-body text-[0.6rem] uppercase tracking-[0.4em] text-champagne/80">
+              Hers
+            </p>
+          </Reveal>
+        </div>
+      </div>
     </motion.section>
+
   );
 }

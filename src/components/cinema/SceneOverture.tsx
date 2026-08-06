@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ScrollFadeText } from "@/components/cinema/ScrollFade";
-import { HONOUREE } from "@/lib/media";
+import { HONOUREE, overtureSlot } from "@/lib/media";
 
 const LINES = [
   "Every dream begins with a single step.",
@@ -17,6 +17,8 @@ export function SceneOverture() {
 
   const bloomOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0, 0.55, 0.7, 0]);
   const bloomScale = useTransform(scrollYProgress, [0, 1], [0.6, 1.6]);
+  const plateOpacity = useTransform(scrollYProgress, [0, 0.35, 0.8], [0.85, 0.5, 0]);
+  const plateScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.16]);
 
   return (
     <section ref={ref} data-chapter="overture" className="relative">
@@ -30,6 +32,24 @@ export function SceneOverture() {
       </motion.div>
 
       <div className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
+        <motion.div
+          aria-hidden="true"
+          style={{ opacity: plateOpacity }}
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+        >
+          <motion.img
+            src={overtureSlot.src}
+            alt=""
+            width={1920}
+            height={1080}
+            loading="eager"
+            decoding="sync"
+            style={{ scale: plateScale }}
+            className="gpu h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/80 to-obsidian/70" />
+        </motion.div>
+
         <motion.p
           initial={{ opacity: 0, letterSpacing: "0.6em" }}
           animate={{ opacity: 1, letterSpacing: "0.42em" }}
