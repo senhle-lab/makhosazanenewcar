@@ -85,8 +85,12 @@ export function SceneBlessing() {
         <p className="font-body text-[0.55rem] uppercase tracking-[0.4em] text-ash">
           Made with love, for family
         </p>
+<p className="mt-6 font-body text-[0.5rem] uppercase tracking-[0.35em] text-ash/60">
+  Designed &amp; Developed by KAYLOR
+</p>
       </footer>
 
     </motion.section>
   );
 }
+
