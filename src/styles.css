@@ -221,3 +221,30 @@
   }
 }
 
+/* ── Resilience layer ─────────────────────────────────────────────────
+ * The film's reveals are driven by Framer Motion, which server-renders
+ * its initial state inline (opacity: 0, transform: translateY(...)).
+ * If the client bundle ever fails to load or hydrate (bad CDN path,
+ * blocked script, hard runtime error), those inline styles would leave
+ * the page permanently blank.
+ *
+ * An inline watchdog in the document head adds .motion-fallback when
+ * hydration has not happened shortly after load. These rules then
+ * neutralise every JS-authored initial state so all content is visible
+ * and readable. Decorative aria-hidden overlays keep their own values.
+ * ------------------------------------------------------------------ */
+html.motion-fallback [style*="opacity"]:not([aria-hidden="true"]) {
+  opacity: 1 !important;
+}
+
+html.motion-fallback [style*="transform"]:not([aria-hidden="true"]),
+html.motion-fallback [style*="translate"]:not([aria-hidden="true"]),
+html.motion-fallback [style*="scale"]:not([aria-hidden="true"]) {
+  transform: none !important;
+}
+
+html.motion-fallback [style*="filter"]:not([aria-hidden="true"]) {
+  filter: none !important;
+}
+
+
