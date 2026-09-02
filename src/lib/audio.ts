@@ -47,32 +47,53 @@ export function subscribeSound(fn: (on: boolean) => void) {
   };
 }
 
+/**
+ * Toggle the score. Must be called from a user gesture (the sound button) —
+ * browsers block programmatic playback otherwise. If playback is refused we
+ * fall back to "off" so the button never lies about the current state.
+ */
 export function setSoundEnabled(on: boolean) {
+  // Guard: no audio element exists during SSR.
+  if (typeof window === "undefined") return;
+
   enabled = on;
+  listeners.forEach((fn) => fn(on));
 
-  if (on) {
-    if (!scoreAudio && audioTracks.score) {
-      scoreAudio = createLoop(audioTracks.score, 0.55);
-    }
-
-    if (!ambienceAudio && audioTracks.ambience) {
-      ambienceAudio = createLoop(audioTracks.ambience, 0.25);
-    }
-
-    if (scoreAudio) {
-      void scoreAudio.play().catch(() => {});
-    }
-
-    if (ambienceAudio) {
-      void ambienceAudio.play().catch(() => {});
-    }
-  } else {
+  if (!on) {
     scoreAudio?.pause();
     ambienceAudio?.pause();
+    return;
   }
 
-  listeners.forEach((fn) => fn(on));
+  if (!scoreAudio && audioTracks.score) {
+    scoreAudio = createLoop(audioTracks.score, 0.55);
+  }
+
+  if (!ambienceAudio && audioTracks.ambience) {
+    ambienceAudio = createLoop(audioTracks.ambience, 0.25);
+  }
+
+  if (ambienceAudio) {
+    void ambienceAudio.play().catch(() => {});
+  }
+
+  if (!scoreAudio) return;
+
+  // Rewind if the element ended, then play; surface refusal back to the UI.
+  void scoreAudio
+    .play()
+    .then(() => {
+      enabled = true;
+      listeners.forEach((fn) => fn(true));
+    })
+    .catch((error: unknown) => {
+      console.error("Score playback was blocked:", error);
+      enabled = false;
+      ambienceAudio?.pause();
+      listeners.forEach((fn) => fn(false));
+    });
 }
+
 
 const cuePlayed = new Set<CueName>();
 
