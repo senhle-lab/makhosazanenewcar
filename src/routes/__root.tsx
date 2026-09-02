@@ -110,11 +110,38 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+/**
+ * Critical CSS, inlined so the cinematic frame (dark canvas, serif display
+ * type, centered title cards) survives even if the external stylesheet is
+ * missing or slow on a self-hosted deployment.
+ */
+const criticalCss = `
+html,body{margin:0;background:#0a0b0d;color:#f6f5f1}
+body{font-family:"Karla",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.cinema{background:#0a0b0d;color:#f6f5f1;overflow-x:hidden;text-align:center}
+.cinema h1,.cinema h2,.cinema h3,.cinema p,.cinema figcaption{text-align:center;margin-left:auto;margin-right:auto}
+.cinema img{display:block;width:100%;height:100%;object-fit:cover}
+`;
+
+/**
+ * Hydration watchdog. Framer Motion server-renders its pre-animation state
+ * inline (opacity:0, translateY), so a client bundle that never executes
+ * would leave a blank page. The class is removed the moment React mounts;
+ * if it is still present after the timeout, .motion-fallback reveals
+ * everything via CSS (see styles.css "Resilience layer").
+ */
+const hydrationWatchdog = `
+(function(){var d=document.documentElement;d.classList.add('pre-hydrate');
+setTimeout(function(){if(d.classList.contains('pre-hydrate')){d.classList.add('motion-fallback');}},4000);})();
+`;
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <style dangerouslySetInnerHTML={{ __html: criticalCss }} />
+        <script dangerouslySetInnerHTML={{ __html: hydrationWatchdog }} />
       </head>
       <body>
         {children}
@@ -127,6 +154,13 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  // Hydration succeeded — stand the watchdog down and hand motion back to JS.
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove("pre-hydrate");
+    root.classList.remove("motion-fallback");
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
@@ -134,3 +168,4 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
+
